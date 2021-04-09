@@ -1,0 +1,18 @@
+intro update (scenario building)
+	related systems
+	govt sects moving towards automation
+
+problem statements
+	each para on each problem
+
+remove olx and fiverr
+
+scope
+	mention actors
+	
+modules
+	user management
+	govt management
+	buy and sell
+	plot management
+	
