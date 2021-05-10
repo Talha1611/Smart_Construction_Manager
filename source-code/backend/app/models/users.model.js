@@ -18,11 +18,9 @@ let userAccount = new schema ({
         number: {type: String, default: ''},
         privacy: {type: String, default: 'following', enum: ['public', 'following', 'private']}
     },
-    dob: { type: Date, default: new Date() },
+    dob: { type: Date, default: Date.now },
     password: { type: String ,  default: '', required: true},
     userType: {type: String, default: 'user', enum: ['admin', 'employee', 'user']},
-    ads: [{type: schema.Types.ObjectId, ref: 'adSchema'}],
-    requests: [{type: schema.Types.ObjectId, ref: 'requestSchema'}]
 }); 
 
 userAccount.plugin(mongoose_timestamps);

@@ -10,26 +10,23 @@ let adSchema = new schema ({
     description: {type: String, default: ''},
     type: {
         type: String,
-        default: '',
+        default: 'Sell',
         enum: ['Buy', 'Sell']
     },
     category: {
         type: String,
-        default: '',
-        enum: ['Plot', 'Sui', 'CDA']
+        default: 'Equipement',
+        enum: ['Property', 'Service', 'Equipement']
     },
+    subcat: {type: String, default: ''},
     status: {
         type: String,
         default: '',
-        enum: ['Active', 'Accepted', 'Rejected', 'Re-submit']
+        enum: ['Active', 'Pending', 'Removed', 'Hidden']
     },
-    plot: {type: String, default: '', required: true},
-    street: {type: String, default: '', required: true},
-    sector: {type: String, default: '', required: true},
-    city: {type: String, default: '', required: true},
-    attachments: [{type: String, default: '', required: true}]
-    
-    
+    posted: {type: Date, default: Date.now},
+    user: {type: schema.Types.ObjectId, ref: 'userAccount'},
+    pictures: [{type: String, default: '', required: true}]   
 }); 
 
 adSchema.plugin(mongoose_timestamps);

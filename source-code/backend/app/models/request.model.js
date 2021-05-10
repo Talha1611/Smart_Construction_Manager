@@ -26,6 +26,7 @@ let requestSchema = new schema ({
     street: {type: String, default: '', required: true},
     sector: {type: String, default: '', required: true},
     city: {type: String, default: '', required: true},
+    user: {type: schema.Types.ObjectId, ref: 'userAccount'},
     attachments: [{type: String, default: '', required: true}]
 }); 
 
