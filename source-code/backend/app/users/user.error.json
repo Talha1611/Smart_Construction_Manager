@@ -1,0 +1,11 @@
+{
+    "1": {
+        "EN" : "User Does Not Exist"
+    },
+    "2": {
+        "EN" : "Incorrect Password"
+    },
+    "3": {
+        "EN" : "User is not authenticated"
+    }
+}

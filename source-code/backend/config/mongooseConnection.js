@@ -3,14 +3,14 @@ const asynLib = require('async') ,
     glob = require('glob') ,
     mongoose = require('mongoose'),
     winston = require('./winston'),
-    env = process.env.NODE_ENV || ('development');
+    env = process.env.NODE_ENV || 'development';
     
 global.config = {}
 
 module.exports = function(callback) {
     asynLib.series([
-        (envCB) => {
-            glob('config/env/*.json', (err, filer) => {
+        function(envCB) {
+            glob('config/env/*.json', function(err, files) {
                 
                 if (err) {
                     return envCB(err);
@@ -26,8 +26,6 @@ module.exports = function(callback) {
                         
                         if (!mongoose.connection.readyState) {
                             mongoose.connect(global.config.mongodb.host, { 
-                                //usetlemlirlParser: true, 
-                                //uselinifiedropology: true, 
                                 useCreateIndex: true,
                                 useUnifiedTopology: true,
                                 useNewUrlParser: true
@@ -60,14 +58,14 @@ module.exports = function(callback) {
                 }
             });
         },
-        (modelsCB) => {
+        function(modelsCB) {
             // load all models
-            glob('app/*/*.model.js', (err, files) => {
+            glob('app/**/*.model.js', function(err, files) {
                 if (err) return modelsCB(err);
 
                 else {
                     winston.info('models are loading...');
-                    files.forEach( file => {
+                    files.forEach( function(file) {
                         require(path.join(__dirname, '../', file));
                         winston.info(file, 'is loaded');
                     });
