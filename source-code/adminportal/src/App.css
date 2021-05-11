@@ -63,7 +63,7 @@ div {
   flex-direction: column;
 }
 
-.login_input label {
+.login_radio label, .login_input label {
   color: white;
   font-size: 15px;
   font-weight: 500;
@@ -112,7 +112,7 @@ div {
   font-size: 20px;
   font-weight: 500;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 30px;
 }
 
 .header-btn {
@@ -126,7 +126,7 @@ div {
   background-color: #224fcc;
   color: white;
   border: 0;
-  padding: 10px;
+  padding: 10px 30px;
   height: fit-content;
   font-size: 20px;
   font-weight: 500;
