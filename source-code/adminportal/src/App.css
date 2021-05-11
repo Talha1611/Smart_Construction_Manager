@@ -93,6 +93,7 @@ div {
   flex-direction: column;
   width: 100%;
   overflow-y: scroll;
+  align-items: center;
 }
 
 .dash-header {
@@ -102,17 +103,12 @@ div {
   align-items: center;
   border-bottom: 5px solid #dddddd;
   padding: 10px;
+  flex-direction: row;
+  height: fit-content;
 }
 
 .dash-header button {
-  background-color: #dddddd;
-  color: red;
-  height: fit-content;
-  border: 0;
-  font-size: 20px;
-  font-weight: 500;
-  border-radius: 10px;
-  padding: 10px 30px;
+  margin: 1%;
 }
 
 .header-btn {
@@ -122,25 +118,12 @@ div {
   justify-content: center;
 }
 
-.header-btn button {
-  background-color: #224fcc;
-  color: white;
-  border: 0;
-  padding: 10px 30px;
-  height: fit-content;
-  font-size: 20px;
-  font-weight: 500;
-  border-radius: 15px;
-}
-
 .record {
   padding: 10px 30px;
   width: 100%;
-  overflow-x: scroll;
 }
 
-.add_hospital {
-  display: none;
+.add_employee, .view_request {
   position: fixed;
   left: 0;
   top: 0;
@@ -154,22 +137,21 @@ div {
   overflow-y: scroll;
 }
 
-.add_hospital_form {
+.add_employee_form, .request {
   max-width: 400px;
   width: 100%;
-  height: 70%;
   background-color: white;
   border-radius: 10px;
   flex-direction: column;
   align-items: center;
 }
 
-.add_hospital_form h1 {
+.add_employee_form h1, .request h1 {
   color: #224fcc;
   padding: 10px 0;
 }
 
-.add_hospital_form form {
+.add_employee_form form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -190,6 +172,7 @@ div {
   border: 1px solid #dddddd;
   border-radius: 10px;
   height: 50px;
+  padding-left: 2%;
 }
 
 .form-button {
@@ -217,6 +200,20 @@ div {
   background-color: #224fcc;
   color: #ffffff;
   border: 1px solid #224fcc;
+}
+
+.cross {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.norecord {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  display: flex;
+
 }
 
 /* Small devices (landscape phones, 576px and up) */

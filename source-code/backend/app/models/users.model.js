@@ -11,9 +11,9 @@ let userAccount = new schema ({
         address: {type: String, default: ''},
         privacy: {type: String, default: 'following', enum: ['public', 'following', 'private']}
     },
-    name: {type: String, default: '', required: true},
+    name: {type: String, default: ''},
     profileImage: { type: String, default: '' },
-    username: {type: String, required: true},
+    username: {type: String},
     phone: {
         number: {type: String, default: ''},
         privacy: {type: String, default: 'following', enum: ['public', 'following', 'private']}
@@ -40,7 +40,6 @@ userAccount.pre('save', async function(next) {
     try {
 
         let user = this;
-        console.log('this: ', this);
 
         // only hash the password if it has been modified or is new
         if (!user.isModified('password')) return next();

@@ -3,14 +3,18 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route} from "react-router-dom";
 
-import Login from "./components/login"
-import Dashboard from "./components/dashboard"
+import Login from "./components/login";
+import Admin from "./components/admin";
+import Employee from "./components/employee";
+import Account from "./components/account";
 
 function App() {
   return (
     <Router>
-      <Route path="/" exact component={Dashboard} />
-      <Route path="/login" component={Login} />
+      <Route path="/" exact component={Login} />
+      <Route path="/admin" component={Admin} />
+      <Route path="/employee" component={Employee} />
+      <Route path="/account" component={Account} />
     </Router>
   );
 }

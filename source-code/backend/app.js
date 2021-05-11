@@ -39,9 +39,13 @@ app.use(express.urlencoded({extended: true}));
 
 // Cor Implementation
 let corsOptionsDelegate = function(req, callback) {
+    
     let corsOptions;
+    
     const uri = global.config.Method + '://' + global.config.IP + ':' + global.config.PORT;
+    
     let allowedOrigins = [uri];
+
     if (allowedOrigins.indexOf(req.header('Origin')) !== -1) {
         corsOptions = {
             credentials: true,
@@ -58,7 +62,7 @@ let corsOptionsDelegate = function(req, callback) {
 require('./config/mongooseConnection')((err) => {
 
     if (err) {
-        winston.error;
+        winston.error(err);
     }
 
     else {
@@ -88,22 +92,6 @@ require('./config/mongooseConnection')((err) => {
             }
         }));
 
-        app.use(session({
-            secret: global.config.session.secret,
-            store: mongoStore.create({
-                mongoUrl: config.mongodb.host,
-                touchAfter: 14 * 24 * 60 * 60, // time period in seconds,
-                mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true }
-            }),
-            resave: true,
-            saveUninitialized: true,
-            clearExpired: true,
-            checkExpirationInterval: 900000,
-            cookie: {
-                maxAge: 60 * 24 * 3600 * 1000,
-            }
-        }));
-
         const webRoutes = 'app/*/*.routes.js';
 
         glob.sync(webRoutes).forEach((file) => {
@@ -114,6 +102,7 @@ require('./config/mongooseConnection')((err) => {
         global.errors = require('./config/errors');
 
         app.use( async function(err, req, res, next) {
+
             winston.error(JSON.stringify(err));
             res.status(err.status || 500);
                 

@@ -108,11 +108,11 @@ const createUser = async function(req, res, next) {
 
 
         const name = req.body.name;
-        const profileImage = req.body.profileImage;
-        const email = req.body.email;
-        const password = req.body.password;
-        const userType = req.body.userType;
-        const phoneNumber = req.body.phoneNumber;
+        const profileImage = req.body.profileImage || '';
+        const email = req.body.email || '';
+        const password = req.body.password || '12345678';
+        const userType = req.body.userType || '';
+        const phoneNumber = req.body.phoneNumber || '';
 
         const options = {
              name,
@@ -121,8 +121,8 @@ const createUser = async function(req, res, next) {
              password,
              userType,
              phoneNumber
-
         }
+
         new userAccount(options)
             .save( function(err) {
 

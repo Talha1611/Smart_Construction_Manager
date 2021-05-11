@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const signin = () => {
   
@@ -15,12 +14,12 @@ const Login = () => {
           <div className="login_form">
             <div className="login_radio">
               <div className="form-check form-check-inline">
-                <input className="form-check-input" type="radio" name="type" id="login_radio" value="Admin"/>
-                <label className="form-check-label" for="inlineRadio1">Admin</label>
+                <input className="form-check-input" type="radio" name="type" id="login_radio1" value="Admin"/>
+                <label className="form-check-label" for="login_radio1">Admin</label>
               </div>
               <div className="form-check form-check-inline">
-                <input className="form-check-input" type="radio" name="type" id="login_radio" value="Employee"/>
-                <label className="form-check-label" for="inlineRadio2">Employee</label>
+                <input className="form-check-input" type="radio" name="type" id="login_radio2" value="Employee"/>
+                <label className="form-check-label" for="login_radio2">Employee</label>
               </div>
             </div>
             <div className="login_input">
@@ -32,7 +31,7 @@ const Login = () => {
                 <input type="email" id="pwd" className="form-control" placeholder="Enter Password"/>
             </div>
             <div className="login_submit">
-                <button type="submit" onclick="login()">Login</button>
+                <button type="submit" onClick={signin}>Login</button>
             </div>
           </div>
       </div>
