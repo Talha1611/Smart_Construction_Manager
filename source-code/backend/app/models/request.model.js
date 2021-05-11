@@ -9,18 +9,18 @@ let requestSchema = new schema ({
     description: {type: String, default: ''},
     type: {
         type: String,
-        default: '',
+        default: 'Approval',
         enum: ['Water', 'Electricity', 'Gas', 'Approval', 'Transfer']
     },
     recipient: {
         type: String,
-        default: '',
+        default: 'CDA',
         enum: ['WAPDA', 'Sui', 'CDA']
     },
     status: {
         type: String,
-        default: '',
-        enum: ['Active', 'Accepted', 'Rejected', 'Re-submit']
+        default: 'Pending',
+        enum: ['Active', 'Accepted', 'Rejected', 'Pending']
     },
     plot: {type: String, default: '', required: true},
     street: {type: String, default: '', required: true},

@@ -21,7 +21,7 @@ let adSchema = new schema ({
     subcat: {type: String, default: ''},
     status: {
         type: String,
-        default: '',
+        default: 'Pending',
         enum: ['Active', 'Pending', 'Removed', 'Hidden']
     },
     posted: {type: Date, default: Date.now},
