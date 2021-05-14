@@ -41,10 +41,11 @@ app.use(express.urlencoded({extended: true}));
 let corsOptionsDelegate = function(req, callback) {
     
     let corsOptions;
-    
-    const uri = global.config.Method + '://' + global.config.IP + ':' + global.config.PORT;
-    
-    let allowedOrigins = [uri];
+
+    let allowedOrigins = [
+        global.config.Method + '://' + global.config.IP + ':' + global.config.PORT,
+        global.config.Method + '://' + global.config.IP + ':' + global.config.ADMIN_PORT
+    ];
 
     if (allowedOrigins.indexOf(req.header('Origin')) !== -1) {
         corsOptions = {
@@ -92,13 +93,6 @@ require('./config/mongooseConnection')((err) => {
             }
         }));
 
-        const webRoutes = 'app/*/*.routes.js';
-
-        glob.sync(webRoutes).forEach((file) => {
-            require('./' + file)(app, '');
-            console.log(file + ' is loaded');
-        });
-
         global.errors = require('./config/errors');
 
         app.use( async function(err, req, res, next) {
@@ -127,10 +121,18 @@ require('./config/mongooseConnection')((err) => {
         app.use(passport.initialize());
         app.use(passport.session());
 
+        const webRoutes = 'app/*/*.routes.js';
+
+        glob.sync(webRoutes).forEach((file) => {
+            require('./' + file)(app, '');
+            console.log(file + ' is loaded');
+        });
+
         //catch 404 and forward to error handler
         app.use((err, req, res, next) => {
             err = new Error('Not Found');
             err.status = 404;
+            winston.error(err);
             next(err);
         });
     }

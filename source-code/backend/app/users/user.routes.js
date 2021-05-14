@@ -3,34 +3,26 @@ const usersController = require('./user.controller'),
 
 module.exports = function(app, version) {
 
-    app.get(version + '/users', 
-        // passport.isAuthenticated,
-        // passport.isAuthorized('admin'),
-        usersController.getUserListing
-    );
-
     app.get(version + '/users/:userID', 
-        // passport.isAuthenticated,
-        // passport.isAuthorized('admin'),
+        passport.isAuthenticated,
         usersController.getUserDetail
     );
 
     app.post(version + '/users/:userID', 
-        // passport.isAuthenticated,
-        // passport.isAuthorized('admin'),
+        passport.isAuthenticated,
         usersController.updateUserInfo
     );
 
     app.delete(version + '/users/:userID', 
-        // passport.isAuthenticated,
-        // passport.isAuthorized('admin'),
+        passport.isAuthenticated,
+        passport.isAuthorized('admin'),
         usersController.deleteUser
     );
 
     app.post(version + '/user/create',
-        // passport.isAuthenticated,
-        // passport.isAuthorized('admin'),
-         usersController.createUser
+        passport.isAuthenticated,
+        passport.isAuthorized('admin'),
+        usersController.createUser
     );
 
     app.post(version + '/user/login',
@@ -39,14 +31,14 @@ module.exports = function(app, version) {
     );
 
     app.get(version + '/user/logout', 
-        // passport.isAuthenticated,
-        // passport.isAuthorized('admin'),
+        passport.isAuthenticated,
+        passport.deserializeUser,
         usersController.logoutUser
     );
 
     app.get(version + '/user/validate/', 
-        // passport.isAuthenticated,
-        // passport.isAuthorized('admin'),
+        passport.isAuthenticated,
+        passport.isAuthorized('admin'),
         usersController.validateUser
     );
 
