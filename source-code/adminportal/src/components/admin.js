@@ -13,26 +13,7 @@ const Items = props => (
 
 const Admin = () => {
 
-    const [users, setUsers] = useState([
-        {
-            _id: 1,
-            username: 'Mark',
-            email: 'Otto',
-            name: '@mdo'
-        },
-        {
-            _id: 2,
-            username: 'Jacob',
-            email: 'Thronton',
-            name: '@fat'
-        },
-        {
-            _id: 3,
-            username: 'Larry',
-            email: 'the Bird',
-            name: '@twitter'
-        }
-    ]);
+    const [users, setUsers] = useState([]);
     const [isAdding, setAdding] = useState(false);
     const [email, setEmail] = useState('');
 
@@ -41,9 +22,14 @@ const Admin = () => {
     }
 
     const getItems = () => {
-        return users.map((user, index) => {
-            return <Items user={user} deleteUser={deleteUser} key={index} index={index+1}/>;
-        });
+        return users.length ===0 ?
+            <tr>
+                <td colspan="5"><p className="norecord">No Record</p></td>
+            </tr>
+        :
+            users.map((user, index) => {
+                return <Items user={user} deleteUser={deleteUser} key={index} index={index+1}/>;
+            });
     }
 
     const add_employee = () => {

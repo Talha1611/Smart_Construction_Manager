@@ -18,10 +18,14 @@ const Employee = () => {
     const [viewing, setViewing] = useState(false);
 
     const getItems = () => {
-        return requests.length === 0 ? <p className="norecord">No Record</p>:
-        requests.map((request, index) => {
-            return <Items request={request} viewReq={viewReq} key={index} index={index+1}/>;
-        });
+        return requests.length === 0 ? 
+            <tr>
+                <td colspan="5"><p className="norecord">No Record</p></td>
+            </tr>
+        :
+            requests.map((request, index) => {
+                return <Items request={request} viewReq={viewReq} key={index} index={index+1}/>;
+            });
     }
 
     const viewReq = request => {

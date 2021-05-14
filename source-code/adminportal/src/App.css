@@ -212,7 +212,9 @@ div {
   text-align: center;
   width: 100%;
   margin: 0;
-  display: flex;
+  color: red;
+  font-weight: 500;
+  font-size: 1.5em;
 
 }
 
