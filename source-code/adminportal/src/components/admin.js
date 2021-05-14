@@ -48,11 +48,8 @@ const Admin = () => {
     const add = () => {
         // Send a POST request
         axios({
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-            },
             method: 'post',
-            url: 'http://localhost:6969/user/create',
+            url: global.config.URI_BE + '/user/create',
             data: {
                 email: {
                     address: email,

@@ -42,4 +42,26 @@ module.exports = function(app, version) {
         usersController.validateUser
     );
 
-}
+    app.get(version + '/employeeLogin', 
+        passport.isAuthenticated,
+        passport.isAuthorized('employee'),
+        usersController.sendSingInSuccess
+    );
+
+    app.get(version + '/adminLogin', 
+        passport.isAuthenticated,
+        passport.isAuthorized('admin'),
+        usersController.sendSingInSuccess
+    );
+
+    app.get(version + '/userLogin', 
+        passport.isAuthenticated,
+        passport.isAuthorized('user'),
+        usersController.sendSingInSuccess
+    );
+
+    app.get(version + '/user/firstlogin',
+        usersController.firstlogin
+    );
+
+}   

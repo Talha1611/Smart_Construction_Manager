@@ -207,6 +207,45 @@ const validateUser = async function(req, res, next) {
 
 } 
 
+const firstlogin = async function(req, res, next) {
+    const username = req.params.username;
+    const query = {$or:[{email: username}, {phoneNumber: username}]};
+    if (!username) return next({msgCode: 14});
+
+    try {
+
+        const user = await userAccount.findOne(query);
+
+        console.log(user);
+        if (!user) {
+            winston.error(err);
+            return next({msgCode: 11});
+        }
+
+        console.log(user.password)
+        if(user.password) {
+            return res.json({
+                status: 0,
+                messsage: 'false',
+                data:{}
+            });
+        }
+
+        return res.json({
+            status: 0,
+            messsage: 'true',
+            data:{}
+        });
+        
+    } catch (err) {
+        winston.error(err);
+        return next({msgCode: 6});
+    }
+
+
+
+}
+
 module.exports = {
     getUserListing,
     getUserDetail,
@@ -216,5 +255,6 @@ module.exports = {
     loginUser,
     logoutUser,
     validateUser,
-    sendSingInSuccess
+    sendSingInSuccess,
+    firstlogin
 }

@@ -130,7 +130,7 @@ require('./config/mongooseConnection')((err) => {
 
         //catch 404 and forward to error handler
         app.use((err, req, res, next) => {
-            err = new Error('Not Found');
+            err = new Error('404 Not Found');
             err.status = 404;
             winston.error(err);
             next(err);
