@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <Route path="/" exact component={Login} />
-      <Route path="/first" exact component={FirstLogin} />
+      <Route path="/first" component={FirstLogin} />
       <Route path="/admin" component={Admin} />
       <Route path="/employee" component={Employee} />
       <Route path="/account" component={Account} />

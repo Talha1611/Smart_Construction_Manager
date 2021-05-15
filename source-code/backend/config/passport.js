@@ -5,10 +5,11 @@ var passport = require('passport'),
 
 // Local Login Strategy
 passport.use(new LocalStrategy({
-    usernameField: 'userName',
+    usernameField: 'username',
     passwordField: 'password',
 }, function(username, password, done) {
-    userAccount.findOne({ userName: username }, function(err, user) {
+    const filter = {$or:[{email: username}, {phone: username}, {username: username}]}
+    userAccount.findOne(filter, function(err, user) {
         if (err) {
             return done(err);
         }

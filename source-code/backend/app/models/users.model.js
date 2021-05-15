@@ -7,14 +7,14 @@ const mongoose = require('mongoose'),
     schema = mongoose.Schema; 
 
 let userAccount = new schema ({
-    email: {type: String, default: '', unique: true},
+    email: {type: String, default: '', unique: true, required: true},
     name: {type: String, default: ''},
     profileImage: { type: String, default: '' },
-    username: {type: String, unique: true},
+    username: {type: String, unique: true, required: true},
     phone: {type: String, default: '', unique: true},
     dob: { type: Date, default: Date.now },
-    password: { type: String ,  default: ''},
-    userType: {type: String, default: 'user', enum: ['admin', 'employee', 'user']},
+    usertype: {type: String, default: 'user', enum: ['user', 'admin', 'employee']},
+    password: { type: String ,  default: '', required: true},    
     privacy: {
         email: {type: String, default: 'private', enum: ['public', 'private']},
         phone: {type: String, default: 'private', enum: ['public', 'private']}
@@ -22,6 +22,7 @@ let userAccount = new schema ({
 }); 
 
 userAccount.plugin(mongoose_timestamps);
+userAccount.index({ email: 1, usertype: 1, phone: 1 }, { unique: true });
 
 userAccount.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {

@@ -1,11 +1,11 @@
-const method = "http"
+const METHOD = "http"
 const IP =  "localhost"
 const BE_PORT =  6969
 
 module.exports = global.config = {
-    "Method" : method,
+    "METHOD" : METHOD,
     "IP": IP,
     "BE_PORT": BE_PORT,
-    "URI_BE": method + "://" + IP + ":" + BE_PORT,
-    "URI_ADMIN": method + "://" + IP + ":" + process.env.PORT,
+    "URI_BE": METHOD + "://" + IP + ":" + BE_PORT,
+    "URL": METHOD + "://" + IP,
 }
