@@ -7,20 +7,18 @@ const mongoose = require('mongoose'),
     schema = mongoose.Schema; 
 
 let userAccount = new schema ({
-    email: {
-        address: {type: String, default: ''},
-        privacy: {type: String, default: 'following', enum: ['public', 'following', 'private']}
-    },
+    email: {type: String, default: '', unique: true},
     name: {type: String, default: ''},
     profileImage: { type: String, default: '' },
-    username: {type: String},
-    phone: {
-        number: {type: String, default: ''},
-        privacy: {type: String, default: 'following', enum: ['public', 'following', 'private']}
-    },
+    username: {type: String, unique: true},
+    phone: {type: String, default: '', unique: true},
     dob: { type: Date, default: Date.now },
-    password: { type: String ,  default: '', required: true},
+    password: { type: String ,  default: ''},
     userType: {type: String, default: 'user', enum: ['admin', 'employee', 'user']},
+    privacy: {
+        email: {type: String, default: 'private', enum: ['public', 'private']},
+        phone: {type: String, default: 'private', enum: ['public', 'private']}
+    }
 }); 
 
 userAccount.plugin(mongoose_timestamps);
@@ -59,4 +57,4 @@ userAccount.pre('save', async function(next) {
     }
 });
 
-module.exports = mongoose.model('userAccount', userAccount);
+module.exports = mongoose.model('userAccount', userAccount, 'userAccount');

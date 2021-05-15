@@ -26,10 +26,10 @@ let requestSchema = new schema ({
     street: {type: String, default: '', required: true},
     sector: {type: String, default: '', required: true},
     city: {type: String, default: '', required: true},
-    user: {type: schema.Types.ObjectId, ref: 'userAccount'},
+    user: {type: schema.Types.ObjectId, ref: 'userAccounts'},
     attachments: [{type: String, default: '', required: true}]
 }); 
 
 requestSchema.plugin(mongoose_timestamps);
 
-module.exports = mongoose.model('requestSchema', requestSchema);
+module.exports = mongoose.model('requestSchema', requestSchema, 'requestSchema');

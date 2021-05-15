@@ -93,6 +93,17 @@ require('./config/mongooseConnection')((err) => {
             }
         }));
 
+        const passport = require('./config/passport');
+        app.use(passport.initialize());
+        app.use(passport.session());
+
+        const webRoutes = 'app/*/*.routes.js';
+
+        glob.sync(webRoutes).forEach((file) => {
+            require('./' + file)(app, '');
+            console.log(file + ' is loaded');
+        });
+
         global.errors = require('./config/errors');
 
         app.use( async function(err, req, res, next) {
@@ -117,23 +128,12 @@ require('./config/mongooseConnection')((err) => {
             }
         });
 
-        const passport = require('./config/passport');
-        app.use(passport.initialize());
-        app.use(passport.session());
-
-        const webRoutes = 'app/*/*.routes.js';
-
-        glob.sync(webRoutes).forEach((file) => {
-            require('./' + file)(app, '');
-            console.log(file + ' is loaded');
-        });
-
         //catch 404 and forward to error handler
         app.use((err, req, res, next) => {
             err = new Error('404 Not Found');
             err.status = 404;
             winston.error(err);
-            next(err);
+            res.redirect('/error');
         });
     }
 });

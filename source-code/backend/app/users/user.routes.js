@@ -3,6 +3,10 @@ const usersController = require('./user.controller'),
 
 module.exports = function(app, version) {
 
+    app.get(version + '/users', 
+        usersController.getUserListing
+    );
+
     app.get(version + '/users/:userID', 
         passport.isAuthenticated,
         usersController.getUserDetail

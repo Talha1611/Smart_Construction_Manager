@@ -25,10 +25,10 @@ let adSchema = new schema ({
         enum: ['Active', 'Pending', 'Removed', 'Hidden']
     },
     posted: {type: Date, default: Date.now},
-    user: {type: schema.Types.ObjectId, ref: 'userAccount'},
+    user: {type: schema.Types.ObjectId, ref: 'userAccounts'},
     pictures: [{type: String, default: '', required: true}]   
 }); 
 
 adSchema.plugin(mongoose_timestamps);
 
-module.exports = mongoose.model('adSchema', adSchema);
+module.exports = mongoose.model('adSchema', adSchema, 'adSchema');

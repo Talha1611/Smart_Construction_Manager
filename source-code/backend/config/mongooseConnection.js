@@ -15,7 +15,7 @@ module.exports = function(callback) {
                 if (err) {
                     return envCB(err);
                 } else {
-                    global.config = require(path.join(__dirname, 'env', env + '.json'));
+                    global.config = require(path.join(__dirname, 'env', env + '.js'));
 
                     if (!global.config) {
                         return envCB('Error occured while loading the configuration file.');
@@ -29,7 +29,7 @@ module.exports = function(callback) {
                                 useCreateIndex: true,
                                 useUnifiedTopology: true,
                                 useNewUrlParser: true
-                            });
+                            }).catch(err => console.log(err.reason));
 
                             // when successfully connected
                             mongoose.connection.on('connected', function() { 

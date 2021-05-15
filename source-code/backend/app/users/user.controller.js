@@ -208,21 +208,21 @@ const validateUser = async function(req, res, next) {
 } 
 
 const firstlogin = async function(req, res, next) {
-    const username = req.params.username;
-    const query = {$or:[{email: username}, {phoneNumber: username}]};
+    const username = req.query.username;
+    console.log(username);
+    const filter = {$or:[{"email.address": username}, {"phone.number": username}]};
+    
     if (!username) return next({msgCode: 14});
 
     try {
 
-        const user = await userAccount.findOne(query);
+        const user = userAccount.findOne(filter);
 
-        console.log(user);
         if (!user) {
-            winston.error(err);
+            winston.error({msgCode: 11});
             return next({msgCode: 11});
         }
 
-        console.log(user.password)
         if(user.password) {
             return res.json({
                 status: 0,
